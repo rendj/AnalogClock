@@ -12,6 +12,9 @@
 		B533ED0022DA1DCE007076C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B533ECFE22DA1DCE007076C0 /* Main.storyboard */; };
 		B533ED0222DA1DD0007076C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B533ED0122DA1DD0007076C0 /* Assets.xcassets */; };
 		B533ED0522DA1DD0007076C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B533ED0322DA1DD0007076C0 /* LaunchScreen.storyboard */; };
+		B533ED0D22DB3C18007076C0 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533ED0C22DB3C18007076C0 /* DateUtils.swift */; };
+		B533ED0F22DB3F2B007076C0 /* GeometryUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533ED0E22DB3F2B007076C0 /* GeometryUtils.swift */; };
+		B533ED1122DB5303007076C0 /* UIFontUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533ED1022DB5303007076C0 /* UIFontUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		B533ED0122DA1DD0007076C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B533ED0422DA1DD0007076C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B533ED0622DA1DD0007076C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B533ED0C22DB3C18007076C0 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		B533ED0E22DB3F2B007076C0 /* GeometryUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryUtils.swift; sourceTree = "<group>"; };
+		B533ED1022DB5303007076C0 /* UIFontUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				B533ED0122DA1DD0007076C0 /* Assets.xcassets */,
 				B533ED0322DA1DD0007076C0 /* LaunchScreen.storyboard */,
 				B533ED0622DA1DD0007076C0 /* Info.plist */,
+				B533ED0C22DB3C18007076C0 /* DateUtils.swift */,
+				B533ED0E22DB3F2B007076C0 /* GeometryUtils.swift */,
+				B533ED1022DB5303007076C0 /* UIFontUtils.swift */,
 			);
 			path = AnalogClock;
 			sourceTree = "<group>";
@@ -136,7 +145,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B533ECFD22DA1DCE007076C0 /* ViewController.swift in Sources */,
+				B533ED0D22DB3C18007076C0 /* DateUtils.swift in Sources */,
 				B533ECFB22DA1DCE007076C0 /* AppDelegate.swift in Sources */,
+				B533ED1122DB5303007076C0 /* UIFontUtils.swift in Sources */,
+				B533ED0F22DB3F2B007076C0 /* GeometryUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
