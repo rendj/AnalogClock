@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 struct Constants {
     static let initialLayerAngle = CGFloat.pi / 2.0
     static let clockRadius = 150
