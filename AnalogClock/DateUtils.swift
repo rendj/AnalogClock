@@ -25,9 +25,8 @@ enum DateComponetType {
     }
 }
 
-class DateUtils {
-
-    func currentValue(for type: DateComponetType) -> Int { //TODO: - make CGFloat
+struct DateUtils {
+    func currentValue(for type: DateComponetType) -> Int {
         let formatter = DateFormatter()
         formatter.dateFormat = type.dateFormat
         let valueString = formatter.string(from: Date())
