@@ -17,6 +17,7 @@ final class ViewController: UIViewController {
     let clockFaceLayer = CAShapeLayer()
     let secondHandLayer = CAShapeLayer()
     let minutesHandLayer = CAShapeLayer()
+    let hoursHandLayer = CAShapeLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +25,9 @@ final class ViewController: UIViewController {
         drawMainStrokes()
         drawSecondaryStrokes()
         drawDigits()
-        drawSecondsHand()
+        drawHoursHand()
         drawMinutesHand()
+        drawSecondsHand()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.updateHandsPosition), userInfo: nil, repeats: true)
     }
     //TODo: - move clock to the separate struct!!!
@@ -102,13 +104,17 @@ final class ViewController: UIViewController {
     @objc func updateHandsPosition() {
          secondHandLayer.transform = CATransform3DMakeRotation(CGFloat(dateUtils.currentValue(for: .second)) * geometryUtils.radianForSecond() - geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0)
         minutesHandLayer.transform = CATransform3DMakeRotation(CGFloat(dateUtils.currentValue(for: .minute)) * geometryUtils.radianForSecond() - geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0)
+        hoursHandLayer.transform = CATransform3DMakeRotation(geometryUtils.initialRadiansFor(hours: dateUtils.currentValue(for: .hour)) + (2 * CGFloat.pi / 720) * CGFloat(dateUtils.currentValue(for: .minute)), 0.0, 0.0, 1.0)
     }
 }
 
 extension ViewController {
     func drawSecondsHand() {
         let secondHandFrame = CGRect(origin: .zero, size: geometryUtils.handSize(for: .second))
-        secondHandLayer.path = CGPath(rect: secondHandFrame, transform: nil)
+        let path = CGMutablePath()
+        path.addPath(CGPath(rect: secondHandFrame, transform: nil))
+        path.addEllipse(in: CGRect(x: 0.1 * secondHandFrame.size.width - geometryUtils.handsCirleRadius , y: secondHandFrame.size.height / 2 - geometryUtils.handsCirleRadius, width: 2 * geometryUtils.handsCirleRadius, height: 2 * geometryUtils.handsCirleRadius))
+        secondHandLayer.path = path
         secondHandLayer.frame = secondHandFrame
         secondHandLayer.fillColor = UIColor.red.cgColor
         secondHandLayer.anchorPoint = CGPoint(x: 0.1, y: 0.5)
@@ -127,7 +133,19 @@ extension ViewController {
         view.layer.addSublayer(minutesHandLayer)
         minutesHandLayer.position = view.layer.position
         minutesHandLayer.transform = CATransform3DMakeRotation(-geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0) //point up
-        minutesHandLayer.transform = CATransform3DMakeRotation(geometryUtils.initialRadiansFor(seconds: dateUtils.currentValue(for: .minute)), 0.0, 0.0, 1.0)
+        minutesHandLayer.transform = CATransform3DMakeRotation(geometryUtils.initialRadiansFor(minutes: dateUtils.currentValue(for: .minute)), 0.0, 0.0, 1.0)
+    }
+    
+    func drawHoursHand() {
+        let hoursHandFrame = CGRect(origin: .zero, size: geometryUtils.handSize(for: .hour))
+        hoursHandLayer.path = CGPath(rect: hoursHandFrame, transform: nil)
+        hoursHandLayer.frame = hoursHandFrame
+        hoursHandLayer.fillColor = UIColor.darkGray.cgColor
+        hoursHandLayer.anchorPoint = CGPoint(x: 0.1, y: 0.5)
+        view.layer.addSublayer(hoursHandLayer)
+        hoursHandLayer.position = view.layer.position
+        hoursHandLayer.transform = CATransform3DMakeRotation(-geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0) //point up
+        hoursHandLayer.transform = CATransform3DMakeRotation(geometryUtils.initialRadiansFor(hours: dateUtils.currentValue(for: .hour)) + (2 * CGFloat.pi / 720) * CGFloat(dateUtils.currentValue(for: .minute)) , 0.0, 0.0, 1.0)
     }
 }
 

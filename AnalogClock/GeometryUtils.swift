@@ -18,6 +18,7 @@ class GeometryUtils {
     let numberOfMainStrokes = 12
     let numberOfSecondaryStrokes = 60
     let fontSize = CGFloat(28)
+    let handsCirleRadius = CGFloat(5)
     
     func angleForMainStrokes() -> CGFloat {
         return 2 * CGFloat.pi / CGFloat(numberOfMainStrokes)
@@ -30,8 +31,8 @@ class GeometryUtils {
     func handSize(for type: DateComponetType) -> CGSize {
         switch type {
         case .second: return CGSize(width: clockRadius - 20, height: 2)
-        case .minute: return CGSize(width: clockRadius - 50, height: 4)
-        case .hour: return CGSize(width: clockRadius - 20, height: 2)
+        case .minute: return CGSize(width: clockRadius - 40, height: 4)
+        case .hour: return CGSize(width: clockRadius - 70, height: 6)
         }
     }
     
@@ -47,12 +48,12 @@ extension GeometryUtils {
     }
     
     func initialRadiansFor(hours: Int) -> CGFloat {
-        return (2 * CGFloat.pi / CGFloat(numberOfMainStrokes)) * CGFloat(hours) - initialLayerAngle
+        return (2 * CGFloat.pi / CGFloat(12.0)) * CGFloat(hours) - initialLayerAngle
     }
 }
 
 extension GeometryUtils {
-    //TODO: - imporove naming!
+    //TODO: - imporove naming! use enum DateComponentType
     func radianForSecond() -> CGFloat {
         return 2 * CGFloat.pi / CGFloat(60.0) //it is possible to optimize the expression by removing "2 *" and divide by 30 except of 60. Didnt optimize it for clarity.
     }
