@@ -21,8 +21,11 @@ class Clock {
     var timer: Timer?
     var containerView: UIView!
     
-    func draw(on containerView: UIView) {
+    init(with containerView: UIView) {
         self.containerView = containerView
+    }
+    
+    func draw() {
         drawClockFace()
         drawMainStrokes()
         drawSecondaryStrokes()

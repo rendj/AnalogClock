@@ -12,6 +12,6 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Clock().draw(on: view)
+        Clock(with: view).draw()
     }
 }
