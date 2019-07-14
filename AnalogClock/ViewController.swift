@@ -16,6 +16,7 @@ final class ViewController: UIViewController {
     
     let clockFaceLayer = CAShapeLayer()
     let secondHandLayer = CAShapeLayer()
+    let minutesHandLayer = CAShapeLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,8 @@ final class ViewController: UIViewController {
         drawMainStrokes()
         drawSecondaryStrokes()
         drawDigits()
-        drawSecondHand()
+        drawSecondsHand()
+        drawMinutesHand()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.updateHandsPosition), userInfo: nil, repeats: true)
     }
     //TODo: - move clock to the separate struct!!!
@@ -99,11 +101,12 @@ final class ViewController: UIViewController {
     
     @objc func updateHandsPosition() {
          secondHandLayer.transform = CATransform3DMakeRotation(CGFloat(dateUtils.currentValue(for: .second)) * geometryUtils.radianForSecond() - geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0)
+        minutesHandLayer.transform = CATransform3DMakeRotation(CGFloat(dateUtils.currentValue(for: .minute)) * geometryUtils.radianForSecond() - geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0)
     }
 }
 
 extension ViewController {
-    func drawSecondHand() {
+    func drawSecondsHand() {
         let secondHandFrame = CGRect(origin: .zero, size: geometryUtils.handSize(for: .second))
         secondHandLayer.path = CGPath(rect: secondHandFrame, transform: nil)
         secondHandLayer.frame = secondHandFrame
@@ -111,8 +114,20 @@ extension ViewController {
         secondHandLayer.anchorPoint = CGPoint(x: 0.1, y: 0.5)
         view.layer.addSublayer(secondHandLayer)
         secondHandLayer.position = view.layer.position
-        self.secondHandLayer.transform = CATransform3DMakeRotation(-geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0) //point up
-        self.secondHandLayer.transform = CATransform3DMakeRotation(geometryUtils.initialRadiansFor(seconds: dateUtils.currentValue(for: .second)), 0.0, 0.0, 1.0)
+        secondHandLayer.transform = CATransform3DMakeRotation(-geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0) //point up
+        secondHandLayer.transform = CATransform3DMakeRotation(geometryUtils.initialRadiansFor(seconds: dateUtils.currentValue(for: .second)), 0.0, 0.0, 1.0)
+    }
+    
+    func drawMinutesHand() {
+        let minutesHandFrame = CGRect(origin: .zero, size: geometryUtils.handSize(for: .minute))
+        minutesHandLayer.path = CGPath(rect: minutesHandFrame, transform: nil)
+        minutesHandLayer.frame = minutesHandFrame
+        minutesHandLayer.fillColor = UIColor.darkGray.cgColor
+        minutesHandLayer.anchorPoint = CGPoint(x: 0.1, y: 0.5)
+        view.layer.addSublayer(minutesHandLayer)
+        minutesHandLayer.position = view.layer.position
+        minutesHandLayer.transform = CATransform3DMakeRotation(-geometryUtils.initialLayerAngle, 0.0, 0.0, 1.0) //point up
+        minutesHandLayer.transform = CATransform3DMakeRotation(geometryUtils.initialRadiansFor(seconds: dateUtils.currentValue(for: .minute)), 0.0, 0.0, 1.0)
     }
 }
 

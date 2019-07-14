@@ -30,7 +30,7 @@ class GeometryUtils {
     func handSize(for type: DateComponetType) -> CGSize {
         switch type {
         case .second: return CGSize(width: clockRadius - 20, height: 2)
-        case .minute: return CGSize(width: clockRadius - 20, height: 2)
+        case .minute: return CGSize(width: clockRadius - 50, height: 4)
         case .hour: return CGSize(width: clockRadius - 20, height: 2)
         }
     }
